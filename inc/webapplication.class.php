@@ -294,6 +294,7 @@ class PluginWebapplicationsWebapplication extends CommonDBTM {
 
       $ong = [];
       $this->addDefaultFormTab($ong);
+      $this->addImpactTab($ong, $options);
       $this->addStandardTab('PluginWebapplicationsWebapplication_Item', $ong, $options);
       $this->addStandardTab('Ticket', $ong, $options);
       $this->addStandardTab('KnowbaseItem_Item', $ong, $options);

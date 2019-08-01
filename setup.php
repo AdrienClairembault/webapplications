@@ -31,7 +31,7 @@ define('PLUGIN_WEBAPPLICATIONS_VERSION', '2.6.0');
 
 // Init the hooks of the plugins -Needed
 function plugin_init_webapplications() {
-   global $PLUGIN_HOOKS;
+   global $PLUGIN_HOOKS, $CFG_GLPI;
 
    $PLUGIN_HOOKS['csrf_compliant']['webapplications'] = true;
    //load changeprofile function
@@ -97,6 +97,8 @@ function plugin_init_webapplications() {
 
    // End init, when all types are registered
    $PLUGIN_HOOKS['post_init']['webapplications'] = 'plugin_webapplications_postinit';
+
+   $CFG_GLPI["impact_asset_types"]["PluginWebapplicationsWebapplication"] = "plugins/webapplications/img/webapplication.png";
 }
 
 
@@ -129,8 +131,8 @@ function plugin_version_webapplications() {
  * @return bool
  */
 function plugin_webapplications_check_prerequisites() {
-   if (version_compare(GLPI_VERSION, '9.4', 'lt') 
-         || version_compare(GLPI_VERSION, '9.5', 'ge')) {
+   if (version_compare(GLPI_VERSION, '9.4', 'lt')
+         || version_compare(GLPI_VERSION, '9.6', 'ge')) {
       if (method_exists('Plugin', 'messageIncompatible')) {
          echo Plugin::messageIncompatible('core', '9.4');
       }
